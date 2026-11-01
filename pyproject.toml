@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "notes-mcp-server"
+version = "0.1.0"
+description = "MCP server giving an AI assistant a searchable SQLite notebook"
+requires-python = ">=3.10"
+dependencies = ["mcp>=2.3,<3", "pydantic>=2.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff>=0.6"]
+
+[project.scripts]
+notes-mcp = "notes_mcp.server:main"
+
+[tool.setuptools]
+packages = ["notes_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "DTZ"]
